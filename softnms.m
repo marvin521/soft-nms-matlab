@@ -1,6 +1,7 @@
 function bbs = softnms(boxes, overlap,sigma,threshold,method)
 %%boxes为一个m*n的矩阵，其中m为boundingbox的个数，n的前4列为每个boundingbox的坐标，格式为
 %%（x1,y1,x2,y2）；第5列为置信度。overlap为设定值，0.3,0.5 .....
+%method值为1：线性，2：高斯加权，3：传统NMS
 if (nargin<3)
     sigma=0.5;
     %Nt=0.8;
@@ -14,8 +15,6 @@ y1 = boxes(:,2);%所有boundingbox的y1坐标
 x2 = boxes(:,3);%所有boundingbox的x2坐标
 y2 = boxes(:,4);%所有boundingbox的y2坐标
 area = (x2-x1+1) .* (y2-y1+1); %每个%所有boundingbox的面积
-%
-% picks = cell(size(boxes, 2)-4, 1);%为每一类预定义一个将要保留的cell
 
 for ib=1:N
     tBD=boxes(ib,:);
