@@ -43,7 +43,6 @@ for ib=1:N
     
     inter = w.*h;
     o = inter ./ (tarea + area(pos:end) - inter);%计算得分最高的那个boundingbox和其余的boundingbox的交集面积
-    %I = I(o<=overlap);%保留交集小于一定阈值的boundingbox
     
     if method==1    %linear
         weight=ones(size(o));
